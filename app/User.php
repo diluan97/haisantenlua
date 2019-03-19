@@ -3,11 +3,18 @@
 namespace App;
 
 use Illuminate\Notifications\Notifiable;
+use App\Helpers\BeautyLink;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 
 class User extends Authenticatable
 {
-    use Notifiable;
+    use Notifiable, BeautyLink;
+
+
+    public static $urlAdminEdit = 'admin_users.edit';
+    public static $urlAdminShow = 'admin_users.show';
+    public static $urlAdminDestroy = 'admin_users.destroy';
+    public static $urlAdminUpdate = 'admin_users.update';
 
     /**
      * The attributes that are mass assignable.
@@ -26,4 +33,12 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+    public function getRole()
+    {
+        if ($this->role == 1) {
+            echo "Admin";
+        } else {
+            echo "Bình Thường";
+        }
+    }
 }
