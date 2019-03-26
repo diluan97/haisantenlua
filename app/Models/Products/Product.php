@@ -46,13 +46,13 @@ class Product extends Model
     }
     public function getHot(){
         if($this->hot == 0){
-            echo config('custom.hot_display.0');
+            echo '<span class="product-new-top">'. config('custom.hot_display.0') .'</span>';
         }else if($this->hot == 1){
-            echo config('custom.hot_display.1');
+            echo '<span class="product-new-top">' . config('custom.hot_display.1') . '</span>';
         }else if($this->hot == 2){
-            echo config('custom.hot_display.2');
+            echo '<span class="product-new-top">' . config('custom.hot_display.2') . '</span>';
         }else{
-            echo config('custom.hot_display.3');
+           return "";
         }
     }
 

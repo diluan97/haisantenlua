@@ -17,12 +17,12 @@
                         <div class="collapse navbar-collapse menu--shylock" id="bs-example-navbar-collapse-1">
                             <ul class="nav navbar-nav menu__list">
                                 <li class="active">
-                                    <a class="nav-stylehead" href="index.html">Trang Chủ
+                                    <a class="nav-stylehead" href="{{ route('home') }}">Trang Chủ
 										<span class="sr-only">(current)</span>
 									</a>
                                 </li>
                                 <li class="">
-                                    <a class="nav-stylehead" href="about.html">Về Chúng Tôi</a>
+                                    <a class="nav-stylehead" href="{{ route('about') }}">Về Chúng Tôi</a>
                                 </li>
                                 <li class="">
                                     <a class="nav-stylehead" href="{{ route('all_product') }}">Tất Cả Món Ăn</a>
@@ -101,7 +101,7 @@
                                             <div class="col-sm-6 multi-gd-img">
                                                 <ul class="multi-column-dropdown">
                                                     <li>
-                                                        <a href="product2.html">{{ $item->name }}</a>
+                                                        <a href="{{ route('cate_product',$item->slug) }}">{{ $item->name }}</a>
                                                     </li>
                                                 </ul>
                                             </div>
@@ -112,7 +112,7 @@
                                                 @if($item->id > $binary)
                                                 <ul class="multi-column-dropdown">
                                                     <li>
-                                                        <a href="product2.html">{{ $item->name }}</a>
+                                                        <a href="{{ route('cate_product',$item->slug) }}">{{ $item->name }}</a>
                                                     </li>
                                                 </ul>
                                                  @endif
@@ -138,7 +138,7 @@
                                     </ul>
                                 </li>
                                 <li class="">
-                                    <a class="nav-stylehead" href="contact.html">Liên Hệ</a>
+                                    <a class="nav-stylehead" href="{{ route('contact') }}">Liên Hệ</a>
                                 </li>
                             </ul>
                         </div>

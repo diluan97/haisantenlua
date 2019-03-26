@@ -88,7 +88,8 @@
             </div>
                 <input type="submit" class="btn btn-primary" name="publish" value="Hiển Thị Trên Web">
                 <input type="submit" class="btn btn-warning" name="draff" value="Chưa Hiển Thị ">
-        </div>
+                <input type="submit" class="btn btn-success" name="displayUser" value="Hiển Thị Giá Cho Người Dùng Bình Thường">
+                <input type="submit" class="btn btn-danger" name="unDisplayUser" value="Không Hiển Giá Thị Cho Người Dùng Bình Thường">
     </div>
     </form>
 </div>

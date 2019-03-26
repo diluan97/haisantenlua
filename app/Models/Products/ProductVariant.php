@@ -102,10 +102,14 @@ class ProductVariant extends Model
     }
     public function getPrice()
     {
-        if(Auth::check() && Auth()->user('role',1)){
+        $auth = Auth::check();
+        if($auth && Auth()->user('role',1)){
             $price = $this->price;
             return number_format($price)." Vnđ";
-        }return "Liên Hệ ";
+        }else if($this->position == 0){
+            $price = $this->price;
+            return number_format($price) . " Vnđ";
+        }return "Liên Hệ";
     }
 
     public function getInStock(){
@@ -115,4 +119,16 @@ class ProductVariant extends Model
         return "Hết Hàng";
     }
 
+    public function getPriceCart()
+    {
+        $auth = Auth::check();
+        if ($auth && Auth()->user('role', 1)) {
+            $price = $this->price;
+            return $price;
+        } else if ($this->position == 0) {
+            $price = $this->price;
+            return $price;
+        }
+        return 0;
+    }
 }

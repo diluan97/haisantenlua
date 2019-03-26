@@ -16,6 +16,9 @@ Breadcrumbs::for('drash', function ($breadcrumbs) {
 Breadcrumbs::for('admin_products.index', function ($breadcrumbs) {
     $breadcrumbs->push('QL Sản Phẩm', route('admin_products.index'));
 });
+Breadcrumbs::for('admin_contact.index', function ($breadcrumbs) {
+    $breadcrumbs->push('QL Liên Hệ', route('admin_contact.index'));
+});
 
 Breadcrumbs::for('search_products', function ($breadcrumbs) {
     $breadcrumbs->parent('admin_products.index');

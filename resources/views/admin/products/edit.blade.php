@@ -8,6 +8,17 @@
     <div class="col-md-12">
 
         <div class="col-lg-12">
+            <form method="post" action="{{ route('admin_products.store') }}" class="">
+                                            {{ csrf_field() }}
+                                            <div class="form-group">
+                                                <div class="input-group">
+                                                    <input type="submit" class="btn btn-info" value="Thêm mới" />
+                                                </div>
+                                            </div>
+                                            <div class="form-actions form-group">
+
+                                            </div>
+                                        </form>
             <div class="card">
                 @if(Session::has('status'))
                 <div class="alert alert-info" role="alert">
@@ -15,6 +26,7 @@
                                         <strong>{{ Session::get('status') }}</strong></span>
                 </div>
                     @endif()
+
                 <form action="{{ $item->urlAdminUpdate() }}" method="POST" class="form-horizontal">
                     <input type="hidden" name="_method" value="PUT"> {!! csrf_field() !!}
                     <div class="card-body card-block">

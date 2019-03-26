@@ -28,12 +28,20 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <link href="{{asset('haisantenlua/css/style.css')}}" rel="stylesheet" type="text/css" media="all" />
     <link href="{{asset('haisantenlua/css/font-awesome.css')}}" rel="stylesheet">
     <!--pop-up-box-->
-    <link href="{{asset('haisantenlua/css/popuo-box.css')}}" rel="stylesheet" type="text/css" media="all" />
+    <link rel="stylesheet" href="{{ asset('haisantenlua/css/popuo-box.css') }}" rel="stylesheet" type="text/css" media="all">
+    <link rel="stylesheet" href="{{ asset('haisantenlua/css/respo-cart.css') }}" rel="stylesheet" type="text/css" media="all">
     <!--//pop-up-box-->
     <!-- price range -->
     <link rel="stylesheet" type="text/css" href="{{asset('haisantenlua/css/jquery-ui1.css')}}">
     <!-- fonts -->
     <link href="//fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800" rel="stylesheet">
+    <link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/alertify.min.css"/>
+<!-- Default theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/default.min.css"/>
+<!-- Semantic UI theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/semantic.min.css"/>
+<!-- Bootstrap theme -->
+<link rel="stylesheet" href="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/css/themes/bootstrap.min.css"/>
 </head>
 
 <body>
@@ -90,13 +98,9 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 <!-- cart details -->
                 <div class="top_nav_right">
                     <div class="wthreecartaits wthreecartaits2 cart cart box_1">
-                        <form action="#" method="post" class="last">
-                            <input type="hidden" name="cmd" value="_cart">
-                            <input type="hidden" name="display" value="1">
-                            <button class="w3view-cart" type="submit" name="submit" value="">
+                            <button class="w3view-cart" data-toggle="modal" data-target="#myModal">
 								<i class="fa fa-cart-arrow-down" aria-hidden="true"></i>
 							</button>
-                        </form>
                     </div>
                 </div>
                 <!-- //cart details -->
@@ -135,15 +139,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                             <a href="#" data-toggle="modal" data-target="#myModal2">
 								Sign Up Now</a>
                         </p>  --}}
-                        <form action="#" method="post">
+                        @if(Auth::check())
+                        <div>
+                            <div class="styled-input agile-styled-input-top">
+                                <span>Xin Chào {{ Auth::user()->name }}</span>
+                            </div>
+                            <div class="styled-input agile-styled-input-top">
+                                <a href="{{ route('logout') }}" class="btn btn-primary">Logout</a>
+                            </div>
+
+                        </div>
+                        @else
+                        <form action="{{ route('login_guest') }}" method="post">
+                            @csrf
                             <div class="styled-input agile-styled-input-top">
                                 <input type="email" placeholder="Tài Khoản" name="email" required="">
+                                @if ($errors->has('email'))
+                                <div class="alert alert-success" role="alert">
+                                    <span class="invalid-feedback" style="display:block;">
+                                    <strong>{{ $errors->first('email') }}</strong></span>
+                                </div>
+                                @endif
                             </div>
                             <div class="styled-input">
                                 <input type="password" placeholder="Mật Khẩu" name="password" required="">
+                                @if ($errors->has('password'))
+                                <div class="alert alert-success" role="alert">
+                                    <span class="invalid-feedback" style="display:block;">
+                                    <strong>{{ $errors->first('password') }}</strong></span>
+                                </div>
+                                @endif
                             </div>
                             <input type="submit" value="Đăng Nhập">
                         </form>
+                        @endif
+
                         <div class="clearfix"></div>
                     </div>
                     <div class="clearfix"></div>
@@ -255,38 +285,32 @@ License URL: http://creativecommons.org/licenses/by/3.0/
             <div class="footer-info w3-agileits-info">
                 <!-- footer categories -->
                 <div class="col-sm-5 address-right">
+
                     <div class="col-xs-6 footer-grids">
                         <h3>Loại Món Ăn</h3>
+                        @foreach($categories1   as  $item)
+                        @if($item->id <= $binary)
                         <ul>
-                            @foreach($categories as $item)
                             <li>
                                 <a href="product.html">{{ $item->name }}</a>
                             </li>
-                            @endforeach
                         </ul>
+                        @endif
+                        @endforeach
                     </div>
+
                     <div class="col-xs-6 footer-grids agile-secomk">
+                        @foreach($categories2   as  $item)
+                        @if($item->id > $binary)
                         <ul>
                             <li>
-                                <a href="product.html">Snacks & Beverages</a>
-                            </li>
-                            <li>
-                                <a href="product.html">Bread & Bakery</a>
-                            </li>
-                            <li>
-                                <a href="product.html">Sweets</a>
-                            </li>
-                            <li>
-                                <a href="product.html">Chocolates & Biscuits</a>
-                            </li>
-                            <li>
-                                <a href="product2.html">Personal Care</a>
-                            </li>
-                            <li>
-                                <a href="product.html">Dried Fruits & Nuts</a>
+                                <a href="product.html">{{ $item->name }}</a>
                             </li>
                         </ul>
+                        @endif
+                    @endforeach
                     </div>
+
                     <div class="clearfix"></div>
                 </div>
                 <!-- //footer categories -->
@@ -296,23 +320,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                         <h3>Liên Kết Nhanh</h3>
                         <ul>
                             <li>
-                                <a href="about.html">About Us</a>
+                                <a href="{{ route('home') }}">Trang Chủ</a>
                             </li>
                             <li>
-                                <a href="contact.html">Contact Us</a>
+                                <a href="{{ route('all_product') }}">Tất Cả Món Ăn</a>
                             </li>
                             <li>
-                                <a href="help.html">Help</a>
+                                <a href="{{ route('about') }}">Về Chúng Tôi</a>
                             </li>
                             <li>
-                                <a href="faqs.html">Faqs</a>
+                                <a href="{{ route('contact') }}">Liên Hệ</a>
                             </li>
-                            <li>
-                                <a href="terms.html">Terms of use</a>
-                            </li>
-                            <li>
-                                <a href="privacy.html">Privacy Policy</a>
-                            </li>
+
                         </ul>
                     </div>
                     <div class="col-xs-6 footer-grids">
@@ -537,8 +556,41 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- //copyright -->
 
     <!-- js-files -->
+
     <!-- jquery -->
     <script src="{{ asset('haisantenlua/js/jquery-2.1.4.min.js')}}"></script>
+    <script src="{{ asset('haisantenlua/js/ajax.js')}}"></script>
+    <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
+    <script>
+        $(document).ready(function() {
+        $('.minus').click(function () {
+        var $input = $(this).parent().find('input');
+        var count = parseInt($input.val()) - 1;
+        count = count < 1 ? 0 : count;
+        $input.val(count);
+        $input.change();
+        return false;
+        });
+        $('.plus').click(function () {
+            var $input = $(this).parent().find('input');
+            $input.val(parseInt($input.val()) + 1);
+            $input.change();
+            return false;
+        });
+
+		});
+    </script>
+   <script>
+
+       $(window).load(function(){
+           function formatNumber(num) {
+            return num.toString().replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,')
+}
+
+
+
+       });
+   </script>
     <!-- //jquery -->
 
     <!-- popup modal (for signin & signup)-->
@@ -557,36 +609,18 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 mainClass: 'my-mfp-zoom-in'
             });
 
+
         });
     </script>
     <!-- Large modal -->
     <!-- <script>
-		$('#').modal('show');
+
 	</script> -->
     <!-- //popup modal (for signin & signup)-->
 
     <!-- cart-js -->
-    <script src="{{ asset('haisantenlua/js/minicart.js')}}"></script>
-    <script>
-        paypalm.minicartk.render(); //use only unique class names other than paypalm.minicartk.Also Replace same class name in css and minicart.min.js
+    {{--  <script src="{{ asset('haisantenlua/js/minicart.js')}}"></script>  --}}
 
-        paypalm.minicartk.cart.on('checkout', function(evt) {
-            var items = this.items(),
-                len = items.length,
-                total = 0,
-                i;
-
-            // Count the number of each item in the cart
-            for (i = 0; i < len; i++) {
-                total += items[i].get('quantity');
-            }
-
-            if (total < 3) {
-                alert('The minimum order quantity is 3. Please add more to your shopping cart before checking out');
-                evt.preventDefault();
-            }
-        });
-    </script>
     <!-- //cart-js -->
 
     <!-- price range (top products) -->
@@ -660,7 +694,7 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <!-- //password-script -->
 
     <!-- smoothscroll -->
-    <script src="{{ asset('haisantenlua/js/SmoothScroll.min.js')}}"></script>
+    {{--  <script src="{{ asset('haisantenlua/js/SmoothScroll.min.js')}}"></script>  --}}
     <!-- //smoothscroll -->
 
     <!-- start-smooth-scrolling -->

@@ -1,6 +1,7 @@
 @extends('layouts.guest.master')
 @section('title','Hải Sản Tên Lửa')
 @section('content')
+@include('component.cart_modal')
 <div class="ads-grid">
         <div class="container">
             <!-- tittle heading -->
@@ -45,7 +46,7 @@
                                         <span class="item_price">{{ $product->getPrice() }}</span>
                                     </div>
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                        <form action="#" method="post">
+                                        <form action="#" method="">
                                             <fieldset>
                                                 <input type="hidden" name="cmd" value="_cart" />
                                                 <input type="hidden" name="add" value="1" />
@@ -56,9 +57,10 @@
                                                 <input type="hidden" name="currency_code" value="USD" />
                                                 <input type="hidden" name="return" value=" " />
                                                 <input type="hidden" name="cancel_return" value=" " />
-                                                <input type="submit" name="submit" value="Thêm Vào Giỏ Hàng" class="button" />
+                                                {{--  <input type="submit" data-toggle="modal" data-target="#myModal" name="submit" value="Thêm Vào Giỏ Hàng" class="button" />  --}}
                                             </fieldset>
                                         </form>
+                                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Thêm Vào Giỏ Hàng</button>
                                     </div>
 
                                 </div>

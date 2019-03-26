@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 // Route::middleware('auth:api')->get('/user', function (Request $request) {
 //     return $request->user();
 // });
+Route::group(array('middleware' => 'auth:api'), function () {
+});
+Route::get('tat-ca-san-pham','Api\ApiAndroid@getProduct')->name('apiProduct');
+Route::get('loai-san-pham', 'Api\ApiAndroid@getCategory')->name('apiCategory');

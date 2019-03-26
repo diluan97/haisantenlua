@@ -121,7 +121,11 @@ class ProductVariantController extends Controller
 
             if ($request->publish) $item->status = 1;
             if ($request->draff) $item->status = 0;
-
+            if ($request->displayUser) {
+                $item->position = 0;
+                $item->status = 1;
+            }
+            if ($request->unDisplayUser) $item->position = 1;
             $item->save();
             return redirect()->route('admin_product_variant.index', ['product_slug' => $slug])->with(['status' => 'Cập nhật dữ liệu thành công!']);
         }

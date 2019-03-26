@@ -196,8 +196,8 @@
 
 
                         <li class="has-sub">
-                            <a class="js-arrow" href="{{ route('admin_slide.index') }}">
-                                <i class="fas fa-archive"></i>QL Contact</a>
+                            <a class="js-arrow" href="{{ route('admin_contact.index') }}">
+                                <i class="fas fa-archive"></i>QL Liên Hệ</a>
                             <ul class="list-unstyled navbar__sub-list js-sub-list">
                             </ul>
                         </li>
