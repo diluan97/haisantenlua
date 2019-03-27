@@ -11,6 +11,8 @@ class CartController extends Controller
 {
     public function addToCartAjax(Request $request)
     {
+        uniqid() . uniqid() . rand(1, 1000000);
+
         $cart = Cart::add([
             'id' => $request->id,
             'name' => $request->name,

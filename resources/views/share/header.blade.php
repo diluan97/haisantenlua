@@ -21,9 +21,7 @@
 										<span class="sr-only">(current)</span>
 									</a>
                                 </li>
-                                <li class="">
-                                    <a class="nav-stylehead" href="{{ route('about') }}">Về Chúng Tôi</a>
-                                </li>
+
                                 <li class="">
                                     <a class="nav-stylehead" href="{{ route('all_product') }}">Tất Cả Món Ăn</a>
                                 </li>
@@ -139,6 +137,9 @@
                                 </li>
                                 <li class="">
                                     <a class="nav-stylehead" href="{{ route('contact') }}">Liên Hệ</a>
+                                </li>
+                                <li class="">
+                                    <a class="nav-stylehead" href="{{ route('about') }}">Về Chúng Tôi</a>
                                 </li>
                             </ul>
                         </div>

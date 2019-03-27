@@ -46,21 +46,17 @@
                                         <span class="item_price">{{ $product->getPrice() }}</span>
                                     </div>
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
-                                        <form action="#" method="">
-                                            <fieldset>
-                                                <input type="hidden" name="cmd" value="_cart" />
-                                                <input type="hidden" name="add" value="1" />
-                                                <input type="hidden" name="business" value=" " />
-                                                <input type="hidden" name="item_name" value="Almonds, 100g" />
-                                                <input type="hidden" name="amount" value="149.00" />
-                                                <input type="hidden" name="discount_amount" value="1.00" />
-                                                <input type="hidden" name="currency_code" value="USD" />
-                                                <input type="hidden" name="return" value=" " />
-                                                <input type="hidden" name="cancel_return" value=" " />
-                                                {{--  <input type="submit" data-toggle="modal" data-target="#myModal" name="submit" value="Thêm Vào Giỏ Hàng" class="button" />  --}}
-                                            </fieldset>
-                                        </form>
-                                        <button type="button" class="btn btn-info btn-lg" data-toggle="modal" data-target="#myModal">Thêm Vào Giỏ Hàng</button>
+
+                                       @if($product->getPrice() != "Liên Hệ")
+                                         <button type="button" name="addToCart" data-url="{{ route('cartAjax') }}" class="btn btn-info btn-lg addToCart"
+                                         data-toggle="modal"
+                                         data-id="{{ $product->id }}"
+                                         data-name="{{ $item->name }}"
+                                         data-image="{{ $product->image }}"
+                                         data-price="{{ $product->getPriceCart() }}"
+                                         data-size="{{ $product->size }}"
+                                         >Thêm Vào Giỏ Hàng</button>
+                                        @endif
                                     </div>
 
                                 </div>

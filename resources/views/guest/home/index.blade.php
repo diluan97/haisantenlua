@@ -57,6 +57,7 @@
                                          data-image="{{ $variant->image }}"
                                          data-price="{{ $variant->getPriceCart() }}"
                                          data-size="{{ $variant->size }}"
+                                         data-rowId="{{ uniqid('12a34a5c67f89f12ef9') }}"
                                          >Thêm Vào Giỏ Hàng</button>
                                         @endif
                                     </div>
@@ -77,8 +78,8 @@
                     @if($categorySpecial->status == 1)
                     <div class="product-sec1">
                         <h3 class="heading-tittle">{{ $categorySpecial->name }}</h3>
-                        @foreach($productSpecial as $item)
-                        @foreach($item->product_variants as $variant)
+                        @foreach($productSpecial as $product)
+                        @foreach($product->product_variants as $variant)
                         @if($variant->status == 1 && $variant->image)
                         <input type="hidden" name="_token" id="token" value="{{ csrf_token() }}">
                         <div class="col-md-4 product-men">
@@ -90,18 +91,26 @@
                                             <a href="{{ route('detail_product',$product->slug) }}" class="link-product-add-cart">Chi Tiết</a>
                                         </div>
                                     </div>
-                                    {{ $item->getHot() }}
+                                    {{ $product->getHot() }}
                                 </div>
                                 <div class="item-info-product ">
-                                    <h4 class="name_cart" id="{{ $item->name }}">
-                                        <a href="single.html">{{ $item->name }}</a>
+                                    <h4 class="name_cart" id="{{ $product->name }}">
+                                        <a href="single.html">{{ $product->name }}</a>
                                     </h4>
                                     <div class="info-product-price size_cart" id="{{ $variant->size }}">
                                         <span class="item_price" id="{{ $variant->getPriceCart() }}">Giá : {{ $variant->getPrice() }}</span>
                                     </div>
                                     <div class="snipcart-details top_brand_home_details item_add single-item hvr-outline-out">
                                         @if($variant->getPrice() != "Liên Hệ")
-                                         <button type="button" name="addToCart" data-url="{{ route('cartAjax') }}" class="btn btn-info btn-lg addToCart" data-toggle="modal" >Thêm Vào Giỏ Hàng</button>
+                                         <button type="button" name="addToCart" data-url="{{ route('cartAjax') }}" class="btn btn-info btn-lg addToCart"
+                                         data-toggle="modal"
+                                         data-id="{{ $variant->id }}"
+                                         data-name="{{ $product->name }}"
+                                         data-image="{{ $variant->image }}"
+                                         data-price="{{ $variant->getPriceCart() }}"
+                                         data-size="{{ $variant->size }}"
+                                         data-rowId="<?php uniqid() ?>"
+                                        >Thêm Vào Giỏ Hàng</button>
                                         @endif
                                     </div>
 
@@ -156,7 +165,17 @@
                                 <div class="w3l-pricehkj">
                                     <h6>Giá : {{ $variant->getPrice() }}</h6>
                                 </div>
-
+                                @if($variant->getPrice() != "Liên Hệ")
+                                         <button type="button" name="addToCart" data-url="{{ route('cartAjax') }}" class="btn btn-info btn-lg addToCart"
+                                         data-toggle="modal"
+                                         data-id="{{ $variant->id }}"
+                                         data-name="{{ $product->name }}"
+                                         data-image="{{ $variant->image }}"
+                                         data-price="{{ $variant->getPriceCart() }}"
+                                         data-size="{{ $variant->size }}"
+                                         data-rowId="<?php uniqid() ?>"
+                                         >Thêm Vào Giỏ Hàng</button>
+                                        @endif
                             </div>
                         </div>
                     </li>

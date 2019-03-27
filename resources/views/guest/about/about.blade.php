@@ -3,7 +3,7 @@
 @section('content')
 @include('component.cart_modal')
 <div class="services-breadcrumb">
-		<div class="agile_inner_breadcru    mb">
+		<div class="agile_inner_breadcrumb">
 			<div class="container">
 				<ul class="w3_short">
 					<li>
@@ -27,15 +27,20 @@
 			</h3>
 			<!-- //tittle heading -->
         <div class="w3l-welcome-info">
-            @foreach($about as $item)
-				<div class="col-sm-6 col-xs-6 welcome-grids">
-					<div class="welcome-img">
-						<img src="{{ asset('image/slide/'.$item->image) }}" class="img-responsive zoom-img" alt="">
+
+				<div class="col-sm-12 col-xs-12 welcome-grids">
+                    <div class="welcome-img">
+                    @foreach($about as $item)
+                        <div class="row">
+                            <div class="col-sm-6"><img  src="{{ asset('image/slide/'.$item->image) }}" class="img-responsive zoom-img" alt=""></div>
+                            <div class="col-sm-6"><p>{{ $item->info }}</p></div>
+                        </div>
+                        <div class="clearfix"> </div>
+                    @endforeach
                     </div>
-                    <p>{{ $item->info }}</p>
                 </div>
-            @endforeach
-				<div class="clearfix"> </div>
+
+
 			</div>
 
 		</div>

@@ -51,7 +51,7 @@
             <div class="mobile_cart col-sm-3" >
                 <div class="row">
                     <div class="number">
-                        <span class="cart minus minusCart" id="{{ $item->id }}" name="minusCart" data-url="{{ route('minus_cart_ajax',$item->rowId) }}" >-</span>
+                        <span class="cart minus minusCart" id="{{ $item->id }}" name="minusCart" data-price="{{ $item->price }}" data-url="{{ route('minus_cart_ajax',$item->rowId) }}" >-</span>
                         <input class="inputCart" type="text" id="qty_cart{{ $item->id }}" value="{{ $item->qty }}" disabled/>
                         <span class="cart plus plusCart" name="plusCart" data-url="{{ route('plus_cart_ajax',$item->rowId) }}" >+</span>
                     </div>

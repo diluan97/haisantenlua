@@ -352,38 +352,6 @@ License URL: http://creativecommons.org/licenses/by/3.0/
                 </div>
                 <!-- //quick links -->
                 <!-- social icons -->
-                {{--  <div class="col-sm-2 footer-grids  w3l-socialmk">
-                    <h3>Follow Us on</h3>
-                    <div class="social">
-                        <ul>
-                            <li>
-                                <a class="icon fb" href="#">
-                                    <i class="fa fa-facebook"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="icon tw" href="#">
-                                    <i class="fa fa-twitter"></i>
-                                </a>
-                            </li>
-                            <li>
-                                <a class="icon gp" href="#">
-                                    <i class="fa fa-google-plus"></i>
-                                </a>
-                            </li>
-                        </ul>
-                    </div>
-                    <div class="agileits_app-devices">
-                        <h5>Download the App</h5>
-                        <a href="#">
-                            <img src="images/1.png" alt="">
-                        </a>
-                        <a href="#">
-                            <img src="images/2.png" alt="">
-                        </a>
-                        <div class="clearfix"> </div>
-                    </div>
-                </div>  --}}
                 <!-- //social icons -->
                 <div class="clearfix"></div>
             </div>
@@ -563,20 +531,25 @@ License URL: http://creativecommons.org/licenses/by/3.0/
     <script src="//cdn.jsdelivr.net/npm/alertifyjs@1.11.2/build/alertify.min.js"></script>
     <script>
         $(document).ready(function() {
-        $('.minus').click(function () {
-        var $input = $(this).parent().find('input');
-        var count = parseInt($input.val()) - 1;
-        count = count < 1 ? 0 : count;
-        $input.val(count);
-        $input.change();
-        return false;
-        });
+
+            $('.minus').click(function () {
+                var $input = $(this).parent().find('input');
+                var count = parseInt($input.val()) - 1;
+                count = count < 1 ? 0 : count;
+                $input.val(count);
+                $input.change();
+                return false;
+            });
+
         $('.plus').click(function () {
             var $input = $(this).parent().find('input');
             $input.val(parseInt($input.val()) + 1);
             $input.change();
             return false;
         });
+
+
+
 
 		});
     </script>

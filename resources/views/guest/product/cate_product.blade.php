@@ -5,7 +5,7 @@
 <div class="ads-grid">
         <div class="container">
             <!-- tittle heading -->
-            <h3 class="tittle-w3l">Tất Cả Sản Phẩm
+            <h3 class="tittle-w3l">{{ $category->name }}
                 <span class="heading-style">
 					<i></i>
 					<i></i>
@@ -22,7 +22,7 @@
 
                     <!-- first section (nuts) -->
                     <div class="product-sec1">
-                        <h3 class="heading-tittle">{{ $category->name }}</h3>
+
                         @foreach($products as $item)
                         @foreach($item->product_variants as $variant)
                         @if($variant->status == 1 &&  $variant->image)
@@ -35,7 +35,7 @@
                                             <a href="{{ route('detail_product',$item->slug) }}" class="link-product-add-cart">Chi Tiết</a>
                                         </div>
                                     </div>
-                                    <span class="product-new-top">{{ $item->getHot() }}</span>
+                                    {{ $item->getHot() }}
                                 </div>
                                 <div class="item-info-product ">
                                     <h4>
